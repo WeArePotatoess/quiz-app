@@ -1,6 +1,6 @@
 import './App.css';
 import { Container } from 'react-bootstrap'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import StartGame from './layouts/StartGame';
 import InGame from './layouts/InGame';
 import Timer from './components/Timer';
@@ -30,7 +30,7 @@ function App() {
     getData();
   }, [])
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     questions.forEach((q, index) => {
       if (userAnswers[index]) {
         const correctAsnwer = q.answers.find((answer) => {
@@ -40,22 +40,23 @@ function App() {
       }
     })
     setFinished(true);
-  }
+  }, [questions, userAnswers])
+
   useEffect(() => {
+    let countdown;
     if (started) {
-      const countdown = setInterval(() => {
+      countdown = setInterval(() => {
         if (remainingTime > 0) {
           setRemainingTime(prev => (prev - 1));
         }
       }, 1000)
-      if (remainingTime === 0) {
-        clearInterval(countdown);
-        handleSubmit();
-      }
-      return () =>
-        clearInterval(countdown)
     }
-  }, [started, remainingTime, handleSubmit])
+    if (remainingTime === 0) {
+      clearInterval(countdown);
+      handleSubmit();
+    }
+    return () => clearInterval(countdown)
+  }, [started, remainingTime])
 
 
   const restart = () => {

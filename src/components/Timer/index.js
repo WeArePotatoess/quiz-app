@@ -2,7 +2,7 @@ import Styles from './Timer.module.css'
 import PropTypes from 'prop-types'
 
 
-function Timer({ handleSubmit, review, remainingTime }) {
+function Timer({ review, remainingTime }) {
 
     if (!review)
         return (
@@ -18,7 +18,6 @@ function Timer({ handleSubmit, review, remainingTime }) {
 }
 
 Timer.propTypes = {
-    handleSubmit: PropTypes.func,
     review: PropTypes.bool,
     remainingTime: PropTypes.number
 }
