@@ -1,0 +1,12 @@
+.timer {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 7rem;
+    z-index: 1;
+    right: 50%;
+    transform: translateX(50%);
+}

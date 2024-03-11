@@ -1,0 +1,42 @@
+.questionContainer {
+    width: 900px;
+}
+
+.questionContent {
+    font-size: 25px;
+    font-weight: 600;
+    width: 100%;
+}
+
+.questionContainer span {
+    font-weight: 700;
+}
+
+.choice {
+    cursor: pointer;
+    width: 800px;
+}
+
+.choice:hover {
+    background-color: #312E81 !important;
+    color: white !important;
+}
+
+.choice.selected {
+    background-color: #312E81 !important;
+    color: white !important;
+}
+
+.choice.userSelect {
+    background-color: #EF4444 !important;
+    color: white !important;
+}
+
+.choice.correctAnswer {
+    background-color: #10B981 !important;
+    color: white !important;
+}
+
+.blueText {
+    color: #4338ca;
+}
