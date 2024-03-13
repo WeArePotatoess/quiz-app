@@ -31,15 +31,21 @@ function App() {
   }, [])
 
   const handleSubmit = useCallback(() => {
-    questions.forEach((q, index) => {
-      if (userAnswers[index]) {
-        const correctAsnwer = q.answers.find((answer) => {
-          return answer.correct === true;
-        })
-        if (correctAsnwer.answer_content === userAnswers[index]) setScore(prev => ++prev)
-      }
-    })
-    setFinished(true);
+    let submit = true;
+    if (remainingTime > 0) {
+      submit = window.confirm("Do you want to submit answers ?");
+    }
+    if (submit) {
+      questions.forEach((q, index) => {
+        if (userAnswers[index]) {
+          const correctAsnwer = q.answers.find((answer) => {
+            return answer.correct === true;
+          })
+          if (correctAsnwer.answer_content === userAnswers[index]) setScore(prev => ++prev)
+        }
+      })
+      setFinished(true);
+    }
   }, [questions, userAnswers])
 
   useEffect(() => {
